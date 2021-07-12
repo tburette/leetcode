@@ -147,6 +147,27 @@ class TestSolution(unittest.TestCase):
         self.assertEqualMergeTwoLists([], [], [])
         self.assertEqualMergeTwoLists([0], [], [0])
 
-    def test_empty(self):
-        self.assertEqualMergeTwoLists([0], [0], [])
+    def test_empty_l1(self):
         self.assertEqualMergeTwoLists([0], [], [0])
+        self.assertEqualMergeTwoLists([0, 1], [], [0, 1])
+
+    def test_empty_l2(self):
+        self.assertEqualMergeTwoLists([0], [0], [])
+        self.assertEqualMergeTwoLists([0, 1], [0, 1], [])
+
+    def test_one_value(self):
+        self.assertEqualMergeTwoLists([1, 1, 1, 1], [1, 1], [1, 1])
+        self.assertEqualMergeTwoLists([1, 1, 1, 1], [1, 1, 1], [1])
+
+    def test_one_list_with_all_values_bigger(self):
+        self.assertEqualMergeTwoLists([1, 2, 3, 4, 5, 6], [4, 5, 6], [1, 2, 3])
+
+    def test_alternating_bigger_value(self):
+        self.assertEqualMergeTwoLists([0, 1, 2, 3, 4, 5], [1, 3, 5], [0, 2, 4])
+        self.assertEqualMergeTwoLists([0, 1, 2, 3, 4, 5], [0, 2, 4], [1, 3, 5])
+
+    def test_start_identical(self):
+        self.assertEqualMergeTwoLists([1, 1, 2, 3, 4, 5], [1, 3, 4], [1, 2, 5])
+
+    def test_end_identical(self):
+        self.assertEqualMergeTwoLists([1, 2, 3, 4, 5, 5], [1, 3, 5], [2, 4, 5])
