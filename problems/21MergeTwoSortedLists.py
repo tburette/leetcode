@@ -118,6 +118,33 @@ class Solution:
             current_node = smaller_node
         return dummy_head_node.next
 
+# single method implementation
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        dummy_node = ListNode()
+        current_node = dummy_node
+        while l1 or l2:
+            if l1 and l2:
+                if l1.val <= l2.val:
+                    current_node.next = l1
+                    current_node = l1
+                    l1 = l1.next
+                else:
+                    current_node.next = l2
+                    current_node = l2
+                    l2 = l2.next
+            elif l1:
+                # current node references the (entire) list
+                # no need to go through the list one by one
+                # all the references are already set as we want them
+                current_node.next = l1
+                l1 = None # finished consuming l1
+            else:
+                assert l2
+                current_node.next = l2
+                l2 = None # finished consuming l2
+
+        return dummy_node.next
 
 class TestSolution(unittest.TestCase):
     def setUp(self):
