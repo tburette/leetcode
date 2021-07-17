@@ -21,8 +21,6 @@ class Solution:
         return haystack.find(needle)
 
 
-
-
 class TestSolution(unittest.TestCase):
     def setUp(self):
         self.s = Solution()
